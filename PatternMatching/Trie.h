@@ -26,7 +26,7 @@ public:
     ~Trie();
     /// @throws std::bad_alloc only
     void insert(const std::string &word);
-    void search(const std::string &road, std::vector<std::pair<std::string, int>> &matches);
+    void search(const std::string &road, std::vector<std::pair<std::string, int>> &matches) const;
 };
 
 #endif //TRIE_H

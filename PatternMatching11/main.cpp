@@ -16,7 +16,6 @@ int main()
     auto total_start = std::chrono::high_resolution_clock::now();
     Trie trie;
     // Insert patterns into the Trie
-    try {
     trie.insert("ana");
     trie.insert("app");
     trie.insert("match");
@@ -24,9 +23,6 @@ int main()
     trie.insert("key");
     trie.insert("and");
     trie.insert("patterns");
-    } catch (std::bad_alloc& _e) {
-        std::cerr << "Failed to insert patterns into a trie" << std::endl;
-    }
 
     // Search for patterns in the text
     std::string text = R"(The quick brown fox jumps over the lazy dog. This is a classic pangram, containing every letter of the English alphabet at least once. It's often used for testing typefaces and keyboards.
@@ -37,12 +33,8 @@ Finally, in natural language processing, pattern matching is fundamental. Identi
     std::vector<std::pair<std::string, int>> matches;
     trie.search(text, matches);
 
-    try {
     trie.insert("ban");
     trie.insert("man");
-    } catch (std::bad_alloc& _e) {
-        std::cerr << "Failed to insert patterns into a trie" << std::endl;
-    }
     std::string text02 = R"(banak banal banca banco bancs banda bands bandy baned
 banes banga bange bango bangs bangy bania banig banjo banka banks banns banty
 banus caban ebano Ibans koban leban obang obans ruban unban urban
@@ -57,9 +49,9 @@ manit maniu manly manna manor manos manse roman saman woman)";
     auto total_duration = total_end - total_start;
 
     // Print the matches
-    //for (const auto& match : matches02) {
-    //    std::cout << "Pattern '" << match.first << "' found at index " << match.second << std::endl;
-    //}
+    for (const auto& match : matches) {
+        std::cout << "Pattern '" << match.first << "' found at index " << match.second << std::endl;
+    }
 
     print_duration("Total execution time: ", total_duration);
 

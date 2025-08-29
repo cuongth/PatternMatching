@@ -15,6 +15,7 @@ void Trie::insert(const std::string& word) {
             try {
                 node->children[c] = new TrieNode();
             } catch (const std::bad_alloc& e) {
+                node->isEnd = true;
                 std::cerr << e.what() << std::endl;
                 throw std::bad_alloc();
             }
@@ -30,7 +31,7 @@ void Trie::insert(const std::string& word) {
     }
 }
 
-void Trie::search(const std::string& road, std::vector<std::pair<std::string, int>>& matches) {
+void Trie::search(const std::string& road, std::vector<std::pair<std::string, int>>& matches) const {
     for (int i = 0; i < road.size(); ++i) {
         TrieNode* node = root;
         for (int j = i; j < road.size(); ++j) {
@@ -38,7 +39,7 @@ void Trie::search(const std::string& road, std::vector<std::pair<std::string, in
                 break;
             }
             node = node->children[road[j]];
-            if (node->isEnd) {
+            if (node->isEnd && node->word) {
                 std::string word(*(node->word));
                 matches.emplace_back(word, i);
             }

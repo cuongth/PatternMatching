@@ -20,7 +20,7 @@ public:
     Trie();
     // using unique_ptr, we don't need destructor ~Trie();
     void insert(const std::string& word);
-    void search(const std::string& road, std::vector<std::pair<std::string, int>>& matches);
+    void search(const std::string& road, std::vector<std::pair<std::string, int>>& matches) const;
 };
 
 

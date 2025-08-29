@@ -58,9 +58,9 @@ manit maniu manly manna manor manos manse roman saman woman)";
     auto total_duration = total_end - total_start;
 
     // Print the matches
-    //for (const auto& match : matches02) {
-    //    std::cout << "Pattern '" << match.first << "' found at index " << match.second << std::endl;
-    //}
+    for (const auto& match : matches) {
+        std::cout << "Pattern '" << match.first << "' found at index " << match.second << std::endl;
+    }
 
     print_duration("Total execution time: ", total_duration);
 
